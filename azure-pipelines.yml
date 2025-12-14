@@ -16,7 +16,7 @@ stages:
     displayName: Build and Publish
 
     steps:
-    - template: template/build-react.yml
+    - template: templates/build-react.yml
       parameters:
         nodeVersion: '20.x'
 
