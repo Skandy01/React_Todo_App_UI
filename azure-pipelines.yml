@@ -1,8 +1,22 @@
-trigger: none 
-pool: Default
+trigger:
+  branches:
+    include:
+      - main
+      - feature/*
 
-steps: 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'Write-Host "Hello World"'
+pool: SonarQube-SelfHosted
+
+stages:
+
+- stage: Build
+  displayName: Build React App
+
+  jobs:
+  - job: BuildJob
+    displayName: Build and Publish
+
+    steps:
+    - template: templates/build-react.yml
+      parameters:
+        nodeVersion: '20.x'
+
